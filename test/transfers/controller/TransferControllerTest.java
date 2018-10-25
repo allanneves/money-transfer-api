@@ -1,4 +1,4 @@
-package transfers;
+package transfers.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Test;
@@ -25,8 +25,8 @@ public class TransferControllerTest extends WithApplication {
                         .uri("/rest/v1/transfers")
                         .bodyJson(toJson(TransferRequestDTO.builder()
                                 .amount("330.0")
-                                .originAccountId("12")
-                                .destinationAccountId("144")
+                                .originAccountId("432925330")
+                                .destinationAccountId("538238213")
                                 .currency("USD")
                                 .build())));
 
@@ -34,6 +34,6 @@ public class TransferControllerTest extends WithApplication {
 
         assertThat(performTransfer.status()).isEqualTo(CREATED);
         responseContent.has("status");
-        assertThat(responseContent.get("status").textValue()).isEqualTo("OK");
+        assertThat(responseContent.get("status").textValue()).isEqualTo("SUCCESS");
     }
 }
