@@ -1,4 +1,5 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 
+# Perform money transfer
 POST     /rest/v1/transfers                           transfers.controller.TransferController.transfer

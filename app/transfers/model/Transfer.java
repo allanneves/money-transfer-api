@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public final class Transfer {
 
-    private Long id;
+    private Integer transferId;
     private Long originAccountId;
     private Long destinationAccountId;
     private Money amount;
