@@ -1,3 +1,14 @@
+![Revolut](https://www.vectorlogo.zone/logos/revolut/revolut-card.png)
+## Task:
+Design and implement a RESTful API in Java or Scala for money transfers between accounts.
+* Rules:
+
+1) Spring framework is not allowed
+2) The implementation must include the design and support of the data model
+3) The database must run in-memory
+4) Produce a standalone program that can run without any dependencies
+5) Tests should be provided to prove the API works as expected
+
 ## Stack:
 ![Java](https://img.shields.io/badge/Java-1.8-red.svg?style=plastic)
 ![Scala](https://img.shields.io/badge/Scala-2.12.7-blue.svg?style=plastic)
