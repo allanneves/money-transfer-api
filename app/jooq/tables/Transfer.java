@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Transfer extends TableImpl<TransferRecord> {
 
-    private static final long serialVersionUID = 1776153557;
+    private static final long serialVersionUID = -192523622;
 
     /**
      * The reference instance of <code>PUBLIC.transfer</code>
@@ -87,6 +87,11 @@ public class Transfer extends TableImpl<TransferRecord> {
      * The column <code>PUBLIC.transfer.date_time</code>.
      */
     public final TableField<TransferRecord, Timestamp> DATE_TIME = createField("date_time", org.jooq.impl.SQLDataType.TIMESTAMP.precision(1), this, "");
+
+    /**
+     * The column <code>PUBLIC.transfer.transfer_id</code>.
+     */
+    public final TableField<TransferRecord, Long> TRANSFER_ID = createField("transfer_id", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>PUBLIC.transfer</code> table reference
