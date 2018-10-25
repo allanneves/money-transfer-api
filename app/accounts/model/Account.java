@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-final class Account {
+public final class Account {
 
     private Long id;
     private Double accountNumber;
