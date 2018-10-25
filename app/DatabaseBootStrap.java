@@ -1,6 +1,5 @@
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -23,7 +22,6 @@ import java.util.List;
 import static org.jooq.impl.DSL.constraint;
 
 @Singleton
-@Slf4j
 public final class DatabaseBootStrap {
 
     private Database database;
@@ -56,7 +54,8 @@ public final class DatabaseBootStrap {
         try {
             GenerationTool.generate(configuration);
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.error(() -> "Could not generate database table classes");
+            System.exit(1);
         }
     }
 
@@ -101,6 +100,7 @@ public final class DatabaseBootStrap {
                 .column("origin_account", SQLDataType.BIGINT)
                 .column("destination_account", SQLDataType.BIGINT)
                 .column("amount", SQLDataType.DECIMAL(10, 2).nullable(false))
+                .column("currency", SQLDataType.VARCHAR(3).nullable(false))
                 .column("date_time", SQLDataType.TIMESTAMP(1))
                 .constraints(
                         constraint("PK_TRANSFER").primaryKey("id")
@@ -110,26 +110,26 @@ public final class DatabaseBootStrap {
 
     private void populateTables() {
         final Table<?> customerTable = getTable("customer");
-        final Field<Integer> customerId = (Field<Integer>) customerTable.field("id");
+        final Field<Long> customerId = (Field<Long>) customerTable.field("id");
         final Field<String> first_name = (Field<String>) customerTable.field("first_name");
         final Field<String> last_name = (Field<String>) customerTable.field("last_name");
         final Field<String> nationalId = (Field<String>) customerTable.field("national_id");
         jooq.insertInto(customerTable, customerId, first_name, last_name, nationalId)
-                .values(1, "Michael", "Jackson", "12900MA")
-                .values(2, "George", "Washington", "18933DU")
-                .values(3, "Mikhail", "Koklyaev", "12344CW")
+                .values(1L, "Michael", "Jackson", "12900MA")
+                .values(2L, "George", "Washington", "18933DU")
+                .values(3L, "Mikhail", "Koklyaev", "12344CW")
                 .execute();
 
         final Table<?> accountTable = getTable("account");
-        final Field<Integer> accountId = (Field<Integer>) accountTable.field("id");
+        final Field<Long> accountId = (Field<Long>) accountTable.field("id");
         final Field<Long> accountNumber = (Field<Long>) accountTable.field("account_number");
         final Field<Integer> fkCustomerId = (Field<Integer>) accountTable.field("customer_id");
         final Field<BigDecimal> balance = (Field<BigDecimal>) accountTable.field("balance");
         final Field<String> currency = (Field<String>) accountTable.field("currency");
         jooq.insertInto(accountTable, accountId, accountNumber, fkCustomerId, balance, currency)
-                .values(1, 432925330L, 1, new BigDecimal(5945.33), "EUR")
-                .values(2, 928321248L, 2, new BigDecimal(0), "BRL")
-                .values(3, 538238213L, 3, new BigDecimal(27.300), "USD")
+                .values(1L, 432925330L, 1, new BigDecimal(5945.33), "EUR")
+                .values(2L, 928321248L, 2, new BigDecimal(0), "BRL")
+                .values(3L, 538238213L, 3, new BigDecimal(27.300), "USD")
                 .execute();
 
     }

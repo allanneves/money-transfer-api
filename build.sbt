@@ -1,4 +1,4 @@
-name := """amount-transfer-api"""
+name := """money-transfer-api"""
 organization := "com.allan"
 version := "1.0"
 
@@ -15,6 +15,7 @@ val jooqCodeGenVersion = "3.11.5"
 
 libraryDependencies ++= Seq(
   guice,
+  jdbc,
   "org.projectlombok" % "lombok" % lombokVersion % "provided",
 
   "com.h2database" % "h2" % h2DatabaseVersion,
