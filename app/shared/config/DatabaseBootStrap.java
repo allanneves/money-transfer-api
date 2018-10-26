@@ -35,8 +35,8 @@ public final class DatabaseBootStrap {
         final Result<Record> customers = jooq.client().select().from(getTable("customer")).fetch();
         final Result<Record> account = jooq.client().select().from(getTable("account")).fetch();
 
-        Logger.info(() -> "In-Memory Customers: " + customers.toString());
-        Logger.info(() -> "In-Memory Accounts: " + account.toString());
+        Logger.info(() -> "In-Memory Customers: \n" + customers.toString());
+        Logger.info(() -> "In-Memory Accounts: \n" + account.toString());
     }
 
     private void createTables() {
