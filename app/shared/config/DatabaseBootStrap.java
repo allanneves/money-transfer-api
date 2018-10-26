@@ -5,12 +5,7 @@ import com.google.inject.Singleton;
 import org.jooq.Record;
 import org.jooq.Result;
 import org.jooq.Table;
-import org.jooq.codegen.GenerationTool;
 import org.jooq.impl.SQLDataType;
-import org.jooq.meta.jaxb.Configuration;
-import org.jooq.meta.jaxb.Generator;
-import org.jooq.meta.jaxb.Jdbc;
-import org.jooq.meta.jaxb.Target;
 import play.Logger;
 import shared.jooq.JooqClient;
 
@@ -31,20 +26,17 @@ public final class DatabaseBootStrap {
     public DatabaseBootStrap(JooqClient jooq) {
         this.jooq = jooq;
         bootStrapDatabase();
-        createClasses();
     }
 
     private void bootStrapDatabase() {
         createTables();
         populateTables();
 
-        final List<Table<?>> tables = jooq.client().meta().getTables();
         final Result<Record> customers = jooq.client().select().from(getTable("customer")).fetch();
         final Result<Record> account = jooq.client().select().from(getTable("account")).fetch();
 
-        Logger.info(tables::toString);
-        Logger.info(customers::toString);
-        Logger.info(account::toString);
+        Logger.info(() -> "In-Memory Customers: " + customers.toString());
+        Logger.info(() -> "In-Memory Accounts: " + account.toString());
     }
 
     private void createTables() {
@@ -109,30 +101,5 @@ public final class DatabaseBootStrap {
             return tableCandidate.get(0);
         }
         return null;
-    }
-
-    private void createClasses() {
-        Configuration configuration = new Configuration()
-                .withJdbc(new Jdbc()
-                        .withDriver("org.h2.Driver")
-                        .withUrl("jdbc:h2:mem:play")
-                        .withUser("sa")
-                        .withPassword("sa"))
-                .withGenerator(new Generator()
-                        .withDatabase(new org.jooq.meta.jaxb.Database()
-                                .withName("org.jooq.meta.h2.H2Database")
-                                .withIncludes(".*")
-                                .withExcludes("")
-                                .withInputSchema("PUBLIC"))
-                        .withTarget(new Target()
-                                .withPackageName("jooq")
-                                .withDirectory("target/generated-sources/jooq")));
-
-        try {
-            GenerationTool.generate(configuration);
-        } catch (Exception e) {
-            Logger.error(() -> "Could not generate database table classes");
-            System.exit(1);
-        }
     }
 }
