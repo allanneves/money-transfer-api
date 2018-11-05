@@ -25,7 +25,14 @@ public final class DatabaseBootStrap {
     @Inject
     public DatabaseBootStrap(JooqClient jooq) {
         this.jooq = jooq;
+        cleanUpDatabase();
         bootStrapDatabase();
+    }
+
+    private void cleanUpDatabase() {
+        jooq.client().dropTableIfExists(ACCOUNT).execute();
+        jooq.client().dropTableIfExists(CUSTOMER).execute();
+        jooq.client().dropTableIfExists(TRANSFER).execute();
     }
 
     private void bootStrapDatabase() {
