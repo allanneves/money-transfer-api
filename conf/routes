@@ -3,3 +3,5 @@
 
 # Perform money transfer
 POST     /rest/v1/transfers                           transfers.controller.TransferController.transfer
+
+GET      /rest/v1/accounts/:accountNumber/balance     accounts.controller.AccountController.checkBalance(accountNumber)

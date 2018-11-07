@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 
 import static jooq.tables.Account.ACCOUNT;
 
-public final class AccountJDBCRepository implements AccountRepository {
+public class AccountJDBCRepository implements AccountRepository {
 
     private JooqClient jooq;
     private CustomerRepository customerRepository;
