@@ -19,20 +19,20 @@ import static play.test.Helpers.contentAsString;
 public class TransferControllerTest extends WithApplication {
 
     private static final String AMOUNT = "330.50";
-    private static final String ORIGIN_ACC = "432925330";
-    private static final String DESTINATION_ACC = "538238213";
+    private static final String MICHAEL_ACCOUNT = "432925330";
+    private static final String MIKHAIL_ACCOUNT = "538238213";
     private static final String CURRENCY = "USD";
 
     @Test
-    public void transferMoney_whenDataIsValid_ShouldReturnCreated() {
+    public void transferMoney_whenDataIsValid_shouldReturnCreated() {
         final Result performTransfer = Helpers.route(this.app,
                 new RequestBuilder()
                         .method(POST)
                         .uri("/rest/v1/transfers")
                         .bodyJson(toJson(TransferRequestDTO.builder()
                                 .amount(AMOUNT)
-                                .originAccountId(ORIGIN_ACC)
-                                .destinationAccountId(DESTINATION_ACC)
+                                .originAccountId(MICHAEL_ACCOUNT)
+                                .destinationAccountId(MIKHAIL_ACCOUNT)
                                 .currency(CURRENCY)
                                 .build())));
 
@@ -44,15 +44,15 @@ public class TransferControllerTest extends WithApplication {
     }
 
     @Test
-    public void transferMoney_whenCurrencyIsInvalid_ShouldReturnBadRequest() {
+    public void transferMoney_whenCurrencyIsInvalid_shouldReturnBadRequest() {
         final Result performTransfer = Helpers.route(this.app,
                 new RequestBuilder()
                         .method(POST)
                         .uri("/rest/v1/transfers")
                         .bodyJson(toJson(TransferRequestDTO.builder()
                                 .amount(AMOUNT)
-                                .originAccountId(ORIGIN_ACC)
-                                .destinationAccountId(DESTINATION_ACC)
+                                .originAccountId(MICHAEL_ACCOUNT)
+                                .destinationAccountId(MIKHAIL_ACCOUNT)
                                 .currency("foo")
                                 .build())));
 

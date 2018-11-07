@@ -14,9 +14,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public final class Transfer {
 
+    public enum Status {
+        SUCCESS, FAILURE;
+    }
+
     private Integer transferId;
     private Long originAccountId;
     private Long destinationAccountId;
     private Money amount;
     private LocalDateTime timestamp;
+    private Status status;
 }

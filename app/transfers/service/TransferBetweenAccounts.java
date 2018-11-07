@@ -17,6 +17,7 @@ public final class TransferBetweenAccounts implements TransferService {
 
     @Override
     public Transfer perform(Transfer transfer) {
+        transfer.setStatus(Transfer.Status.FAILURE);
         validateAccounts(transfer);
         doTransfer(transfer);
         return transfer;
@@ -41,5 +42,6 @@ public final class TransferBetweenAccounts implements TransferService {
         final Money amount = transfer.getAmount();
         accountRepository.addAmount(destination, amount);
         accountRepository.removeAmount(origin, amount);
+        transfer.setStatus(Transfer.Status.SUCCESS);
     }
 }
