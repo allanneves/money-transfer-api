@@ -12,6 +12,7 @@ val assertJVersion = "3.11.1"
 val jooqVersion = "3.11.5"
 val jooqMetaVersion = "3.11.5"
 val jooqCodeGenVersion = "3.11.5"
+val mockitoVersion = "2.10.0"
 
 libraryDependencies ++= Seq(
   guice,
@@ -24,5 +25,6 @@ libraryDependencies ++= Seq(
   "org.jooq" % "jooq-meta" % jooqMetaVersion,
   "org.jooq" % "jooq-codegen" % jooqCodeGenVersion,
 
-  "org.assertj" % "assertj-core" % assertJVersion % "test"
+  "org.assertj" % "assertj-core" % assertJVersion % "test",
+  "org.mockito" % "mockito-core" % mockitoVersion % "test"
 )
