@@ -40,7 +40,7 @@ public final class ConcurrentTransfersTest extends WithApplication {
     *   As the main goal of the test is to check if multiple transfers work well together, I simulate a 4 seconds to delay
     *   so these 3 asynchronous threads can finish. After that I check if they are all done and fetch the account balance
     *   from a different endpoint.
-    *       
+    *
     *   The final value has to be 500 returned in the JSON. I am also validating that.
     *
     * */

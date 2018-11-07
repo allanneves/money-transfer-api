@@ -12,6 +12,9 @@ Design and implement a RESTful API in Java or Scala for money transfers between 
 4) Produce a standalone program that can run without any dependencies
 5) Tests should be provided to prove the API works as expected
 
+## Last build status:
+[![CircleCI](https://circleci.com/gh/allanneves/money-transfer-api/tree/master.svg?style=svg)](https://circleci.com/gh/allanneves/money-transfer-api/tree/master)
+
 ## Tech Stack:
 ![Java](https://img.shields.io/badge/Java-1.8-red.svg?style=plastic)
 ![Scala](https://img.shields.io/badge/Scala-2.12.7-blue.svg?style=plastic)
