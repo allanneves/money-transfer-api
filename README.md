@@ -1,4 +1,4 @@
-![Revolut](https://www.vectorlogo.zone/logos/revolut/revolut-card.png)
+![Revolut](https://d1ic4altzx8ueg.cloudfront.net/finder-us/wp-uploads/sites/3/2018/03/250_250.png)
 
 RESTFul API for Money Transfer / Challenge @ Revolut
 
@@ -125,7 +125,7 @@ If you are running on Unix it is possible that you need to set the scripts permi
 5) You can now request to one of the endpoints:
 ![Request](https://image.ibb.co/kTapbV/Screenshot-2018-10-26-at-01-58-50.png)
 
-## SBT (running server in place):
+## SBT (running server in console):
 ### Requirements:
 1) Java JDK 1.8
 2) Scala SBT 1.2.6
@@ -141,4 +141,4 @@ From project root folder:
 ### Running:
 From project root folder:
 1) <kbd>sbt test</kbd>
-2) Tou can now check the test results in the terminal
+2) You can now check the test results in the terminal
